@@ -15,6 +15,7 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
+        foo: bar
         app: nginx
     spec:
       containers:
