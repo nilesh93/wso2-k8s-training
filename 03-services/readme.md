@@ -12,3 +12,5 @@ if all are in same namespace
 <service-name>
 
 kubectl expose deploy/nginx --port 80 --target-port 80 -o yaml --dry-run --type=NodePort> service-np.yaml
+
+kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/cloud/deploy.yaml
