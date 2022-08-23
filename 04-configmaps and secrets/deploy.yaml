@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nginx
+  name: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nginx
+    spec:
+      volumes:
+        - name: index-html-volume
+          configMap:
+            name: index-html
+      containers:
+        - image: nginx
+          name: nginx
+          envFrom:
+            - configMapRef:
+                name: app-config
+          env:
+            - name: foo
+              value: bar
+            - name: ABC
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: abc
+          volumeMounts:
+            - name: index-html-volume # ref the volume name
+              mountPath: /usr/share/nginx/html/index.html
+              subPath: index.html
+          ports:
+            - containerPort: 80
+
+          resources: {}
+status: {}
