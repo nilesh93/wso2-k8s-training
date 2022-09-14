@@ -6,3 +6,5 @@ kubectl create cm app-config --from-literal hello=world -o yaml --dry-run > app-
 /usr/share/nginx/html/index.html
 
 kubectl create cm index-html --from-file=./index.html -o yaml --dry-run >index-html-cm.yaml
+
+kubectl create secret generic index-html --from-file=./index.html -o yaml --dry-run >index-html-secret.yaml
